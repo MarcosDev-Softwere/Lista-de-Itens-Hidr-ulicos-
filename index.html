@@ -1,224 +1,346 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Itens | Hidráulicos</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f9;
-            color: #333;
-            line-height: 1.6;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 600px;
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            font-size: 2em;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-        }
-        #search {
-            margin-bottom: 20px;
-            width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-        }
-        .item-card {
-            background-color: #ecf0f1;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            padding: 20px;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden;
-            border-left: 4px solid transparent;
-        }
-        .item-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: bold;
-            color: #34495e;
-        }
-        .item-name {
-            flex-grow: 1;
-            font-size: 1.2em;
-        }
-        .item-arrow {
-            font-size: 1.5em;
-            transition: transform 0.3s ease;
-        }
-        .item-card.active .item-arrow {
-            transform: rotate(180deg);
-        }
-        .item-card.active {
-            border-left: 4px solid #3498db;
-        }
-        .item-details {
-            max-height: 0;
-            opacity: 0;
-            visibility: hidden;
-            transition: max-height 0.4s ease, opacity 0.4s ease;
-            padding-top: 0;
-        }
-        .item-card.active .item-details {
-            max-height: 200px;
-            opacity: 1;
-            visibility: visible;
-            padding-top: 15px;
-        }
-        .item-details p {
-            margin: 5px 0;
-            color: #555;
-        }
-        .item-details p strong {
-            color: #2c3e50;
-        }
-        @media (max-width: 480px) {
-            .container {
-                padding: 20px;
-            }
-            .item-name {
-                font-size: 1em;
-            }
-            .item-arrow {
-                font-size: 1.2em;
-            }
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Dias Trabalhados</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        #search {
+            margin-bottom: 20px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        .item-card {
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            border-left: 4px solid transparent;
+        }
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: #34495e;
+        }
+        .item-name {
+            flex-grow: 1;
+            font-size: 1.2em;
+        }
+        .item-arrow {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+        .item-card.active .item-arrow {
+            transform: rotate(180deg);
+        }
+        .item-card.active {
+            border-left: 4px solid #3498db;
+        }
+        .item-details {
+            max-height: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: max-height 0.4s ease, opacity 0.4s ease;
+            padding-top: 0;
+        }
+        .item-card.active .item-details {
+            max-height: 200px;
+            opacity: 1;
+            visibility: visible;
+            padding-top: 15px;
+        }
+        .item-details p {
+            margin: 5px 0;
+            color: #555;
+        }
+        .item-details p strong {
+            color: #2c3e50;
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            .item-name {
+                font-size: 1em;
+            }
+            .item-arrow {
+                font-size: 1.2em;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Lista de Itens</h1>
-        <input type="text" id="search" placeholder="Buscar item..." oninput="filterItems()">
-        <div class="item-list">
+    <div class="container">
+        <h1>Lista de Dias Trabalhados</h1>
+        <input type="text" id="search" placeholder="Buscar nome..." oninput="filterItems()">
+        <div class="item-list">
 
-            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
-                <div class="item-header">
-                    <span class="item-name">Redução 50 mm x 40 mm</span>
-                    <span class="item-arrow">▼</span>
-                </div>
-                <div class="item-details">
-                    <p><strong>Quantidade:</strong> 10</p>
-                    <p><strong>Descrição:</strong> UNI 10 Redução</p>
-                </div>
-            </div>
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">João Capoeira</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 20</p>
+                </div>
+            </div>
 
-            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
-                <div class="item-header">
-                    <span class="item-name">Joelho 90° 40 mm</span>
-                    <span class="item-arrow">▼</span>
-                </div>
-                <div class="item-details">
-                    <p><strong>Quantidade:</strong> 10</p>
-                    <p><strong>Descrição:</strong> UNI 10 Joelhos</p>
-                </div>
-            </div>
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Eloísio Rasta</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 05</p>
+                </div>
+            </div>
 
-            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
-                <div class="item-header">
-                    <span class="item-name">Anel de borracha 50 mm</span>
-                    <span class="item-arrow">▼</span>
-                </div>
-                <div class="item-details">
-                    <p><strong>Quantidade:</strong> Não especificada</p>
-                    <p><strong>Descrição:</strong> UNI</p>
-                </div>
-            </div>
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Evandro</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 23</p>
+                </div>
+            </div>
 
-            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
-                <div class="item-header">
-                    <span class="item-name">Redução 75 mm x 50 mm</span>
-                    <span class="item-arrow">▼</span>
-                </div>
-                <div class="item-details">
-                    <p><strong>Quantidade:</strong> 10</p>
-                    <p><strong>Descrição:</strong> UNI 10 Redução</p>
-                </div>
-            </div>
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Rogério Veterano</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 10 (até 12:00h) e 06 (até 17:00h)</p>
+                </div>
+            </div>
 
-            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
-                <div class="item-header">
-                    <span class="item-name">Braçadeira 40 mm</span>
-                    <span class="item-arrow">▼</span>
-                </div>
-                <div class="item-details">
-                    <p><strong>Quantidade:</strong> 20</p>
-                    <p><strong>Descrição:</strong> UNI 20 Braçadeiras</p>
-                </div>
-            </div>
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Uriel</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 22</p>
+                </div>
+            </div>
 
-            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
-                <div class="item-header">
-                    <span class="item-name">Parafuso S6</span>
-                    <span class="item-arrow">▼</span>
-                </div>
-                <div class="item-details">
-                    <p><strong>Quantidade:</strong> 40</p>
-                    <p><strong>Descrição:</strong> UNI 40 Parafusos</p>
-                </div>
-            </div>
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Givanildo</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 21</p>
+                </div>
+            </div>
 
-            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
-                <div class="item-header">
-                    <span class="item-name">Bucha S6</span>
-                    <span class="item-arrow">▼</span>
-                </div>
-                <div class="item-details">
-                    <p><strong>Quantidade:</strong> 40</p>
-                    <p><strong>Descrição:</strong> UNI 40 Buchas</p>
-                </div>
-            </div>
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Rodnei</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 23</p>
+                </div>
+            </div>
 
-            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
-                <div class="item-header">
-                    <span class="item-name">Serra Starrett</span>
-                    <span class="item-arrow">▼</span>
-                </div>
-                <div class="item-details">
-                    <p><strong>Quantidade:</strong> 2</p>
-                    <p><strong>Descrição:</strong> UNI 02 Serras Starrett</p>
-                </div>
-            </div>
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Bafafá</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 26</p>
+                </div>
+            </div>
 
-        </div>
-    </div>
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Rubens</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 23</p>
+                </div>
+            </div>
 
-    <script>
-        function toggleDetails(card) {
-            card.classList.toggle('active');
-            const expanded = card.classList.contains('active');
-            card.setAttribute('aria-expanded', expanded);
-        }
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Cláudio</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 24</p>
+                </div>
+            </div>
 
-        function filterItems() {
-            const query = document.getElementById('search').value.toLowerCase();
-            const items = document.querySelectorAll('.item-card');
-            items.forEach(item => {
-                const name = item.querySelector('.item-name').textContent.toLowerCase();
-                item.style.display = name.includes(query) ? 'block' : 'none';
-            });
-        }
-    </script>
-</body>
-</html>
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Luiz</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 22</p>
+                </div>
+            </div>
+
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Xuxa</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 22</p>
+                </div>
+            </div>
+
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Serrinha</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 25</p>
+                </div>
+            </div>
+
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Albert</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 24</p>
+                </div>
+            </div>
+
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">João (irmão de Daniel)</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 11</p>
+                </div>
+            </div>
+
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Marcos Vinícius (Almoxarife)</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 21</p>
+                </div>
+            </div>
+
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Salústio</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 02</p>
+                </div>
+            </div>
+
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Fernando Unha</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 12</p>
+                </div>
+            </div>
+
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Renilson Galego (pai do Cabo Verde)</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 12</p>
+                </div>
+            </div>
+
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Raí</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 22</p>
+                </div>
+            </div>
+
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Lucas Silva</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 10</p>
+                </div>
+            </div>
+
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">Marcos Chára</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 10</p>
+                </div>
+            </div>
+
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
+                <div class="item-header">
+                    <span class="item-name">João Lucas</span>
+                    <span class="item-arrow">▼</span>
+                </div>
+                <div class="item-details">
+                    <p><strong>Dias trabalhados:</strong> 11</p>
+                </div>
+            </div>
+
+            <div class="item-card" role="button" tabindex="0" onclick="toggleDetails(this)" aria-expanded="false">
