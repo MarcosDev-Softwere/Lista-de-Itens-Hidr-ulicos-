@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Controle de Dias Trabalhados</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
       background: #f4f4f4;
+      margin: 0;
     }
     h2 {
       text-align: center;
@@ -15,25 +20,43 @@
     }
     input[type="text"] {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
+      padding: 12px;
+      margin-bottom: 20px;
       font-size: 16px;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 6px;
     }
     ul {
       list-style: none;
       padding: 0;
+      margin: 0;
     }
     li {
       background: #fff;
-      margin-bottom: 8px;
-      padding: 10px;
+      margin-bottom: 10px;
+      padding: 12px;
       border-left: 5px solid #4CAF50;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: background 0.3s;
     }
-    .highlight {
-      background-color: #ffffcc;
+    li:hover {
+      background: #e9f5e9;
+    }
+    .details {
+      display: none;
+      margin-top: 8px;
+      font-size: 14px;
+      color: #555;
+    }
+    @media (max-width: 600px) {
+      li {
+        font-size: 16px;
+        padding: 10px;
+      }
+      .details {
+        font-size: 13px;
+      }
     }
   </style>
 </head>
@@ -43,33 +66,33 @@
   <input type="text" id="searchInput" placeholder="Buscar por nome do funcionário...">
 
   <ul id="funcList">
-    <li>João Capoeira: 20 dias</li>
-    <li>Eloísio Rasta: 05 dias</li>
-    <li>Evandro: 23 dias</li>
-    <li>Rogério Veterano: 10 dias até 12:00h e 06 até 17:00h</li>
-    <li>Uriel: 22 dias</li>
-    <li>Givanildo: 21 dias</li>
-    <li>Rodnei: 23 dias</li>
-    <li>Bafafá: 26 dias</li>
-    <li>Rubens: 23 dias</li>
-    <li>Cláudio: 24 dias</li>
-    <li>Luiz: 22 dias</li>
-    <li>Xuxa: 22 dias</li>
-    <li>Serrinha: 25 dias</li>
-    <li>Albert: 24 dias</li>
-    <li>João (irmão de Daniel): 11 dias</li>
-    <li>Marcos Vinícius (Almoxarife): 21 dias</li>
-    <li>Salústio: 02 dias</li>
-    <li>Fernando Unha: 12 dias</li>
-    <li>Renilson Galego (pai do Cabo Verde): 12 dias</li>
-    <li>Raí: 22 dias</li>
-    <li>Lucas Silva: 10 dias</li>
-    <li>Marcos Chára: 10 dias</li>
-    <li>João Lucas: 11 dias</li>
-    <li>Paulo: 24 dias</li>
-    <li>Jairo: 09 dias</li>
-    <li>Rogério (filho de Dona Edina): 21 dias</li>
-    <li>Fernando Unha Pintada: 12 dias</li>
+    <li onclick="toggleDetails(this)">Albert<span class="details"> — 24 dias</span></li>
+    <li onclick="toggleDetails(this)">Bafafá<span class="details"> — 26 dias</span></li>
+    <li onclick="toggleDetails(this)">Cláudio<span class="details"> — 24 dias</span></li>
+    <li onclick="toggleDetails(this)">Eloísio Rasta<span class="details"> — 05 dias</span></li>
+    <li onclick="toggleDetails(this)">Evandro<span class="details"> — 23 dias</span></li>
+    <li onclick="toggleDetails(this)">Fernando Unha<span class="details"> — 12 dias</span></li>
+    <li onclick="toggleDetails(this)">Fernando Unha Pintada<span class="details"> — 12 dias</span></li>
+    <li onclick="toggleDetails(this)">Givanildo<span class="details"> — 21 dias</span></li>
+    <li onclick="toggleDetails(this)">Jairo<span class="details"> — 09 dias</span></li>
+    <li onclick="toggleDetails(this)">João (irmão de Daniel)<span class="details"> — 11 dias</span></li>
+    <li onclick="toggleDetails(this)">João Capoeira<span class="details"> — 20 dias</span></li>
+    <li onclick="toggleDetails(this)">João Lucas<span class="details"> — 11 dias</span></li>
+    <li onclick="toggleDetails(this)">Lucas Silva<span class="details"> — 10 dias</span></li>
+    <li onclick="toggleDetails(this)">Luiz<span class="details"> — 22 dias</span></li>
+    <li onclick="toggleDetails(this)">Marcos Chára<span class="details"> — 10 dias</span></li>
+    <li onclick="toggleDetails(this)">Marcos Vinícius (Almoxarife)<span class="details"> — 21 dias</span></li>
+    <li onclick="toggleDetails(this)">Paulo<span class="details"> — 24 dias</span></li>
+    <li onclick="toggleDetails(this)">Raí<span class="details"> — 22 dias</span></li>
+    <li onclick="toggleDetails(this)">Renilson Galego (pai do Cabo Verde)<span class="details"> — 12 dias</span></li>
+    <li onclick="toggleDetails(this)">Rodnei<span class="details"> — 23 dias</span></li>
+    <li onclick="toggleDetails(this)">Rogério (filho de Dona Edina)<span class="details"> — 21 dias</span></li>
+    <li onclick="toggleDetails(this)">Rogério Veterano<span class="details"> — 10 dias até 12:00h e 06 até 17:00h</span></li>
+    <li onclick="toggleDetails(this)">Rubens<span class="details"> — 23 dias</span></li>
+    <li onclick="toggleDetails(this)">Salústio<span class="details"> — 02 dias</span></li>
+    <li onclick="toggleDetails(this)">Serrinha<span class="details"> — 25 dias</span></li>
+    <li onclick="toggleDetails(this)">Uriel<span class="details"> — 22 dias</span></li>
+    <li onclick="toggleDetails(this)">Xuxa<span class="details"> — 22 dias</span></li>
   </ul>
 
   <script>
@@ -80,16 +103,23 @@
     searchInput.addEventListener('input', function() {
       const filter = this.value.toLowerCase();
       for (let i = 0; i < items.length; i++) {
-        const text = items[i].textContent.toLowerCase();
-        if (text.includes(filter)) {
+        const name = items[i].textContent.toLowerCase();
+        if (name.includes(filter)) {
           items[i].style.display = '';
-          items[i].classList.add('highlight');
         } else {
           items[i].style.display = 'none';
-          items[i].classList.remove('highlight');
         }
       }
     });
+
+    function toggleDetails(element) {
+      const detail = element.querySelector('.details');
+      if (detail.style.display === 'inline') {
+        detail.style.display = 'none';
+      } else {
+        detail.style.display = 'inline';
+      }
+    }
   </script>
 
 </body>
